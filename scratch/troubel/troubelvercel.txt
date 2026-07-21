@@ -1,0 +1,36 @@
+14:46:44.078 
+Running build in Washington, D.C., USA (East) – iad1
+14:46:44.079 
+Build machine configuration: 2 cores, 8 GB
+14:46:44.179 
+Cloning github.com/AgungPoernomo/spwms_satoria (Branch: main, Commit: d888b1a)
+14:46:44.180 
+Previous build caches not available.
+14:46:46.090 
+Cloning completed: 1.911s
+14:46:49.940 
+Running "vercel build"
+14:46:49.960 
+Vercel CLI 56.2.0
+14:46:50.618 
+Installing dependencies...
+14:46:51.876 
+14:46:51.877 
+added 3 packages, and removed 3 packages in 1s
+14:46:51.877 
+14:46:51.877 
+25 packages are looking for funding
+14:46:51.877 
+  run `npm fund` for details
+14:46:51.923 
+Running "npm run build"
+14:46:52.028 
+14:46:52.029 
+> spare-parts-wms@1.0.0 build
+14:46:52.029 
+> vite build
+14:46:52.029 
+14:46:52.035 
+sh: line 1: /vercel/path0/node_modules/.bin/vite: Permission denied
+14:46:52.048 
+Error: Command "npm run build" exited with 126

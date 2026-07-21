@@ -331,9 +331,9 @@ export const generateTrendData = () => {
 };
 
 export const SPARE_PARTS_REPAIR = [
-  { id: 1, kode_part: 'SP-002', nama_part: 'Aki Kering 12V 45Ah', tanggal_masuk: '2026-07-15', masalah: 'Tegangan drop', status: 'Dalam Pengerjaan', teknisi: 'Budi Santoso' },
-  { id: 2, kode_part: 'SP-010', nama_part: 'Shock Absorber Belakang', tanggal_masuk: '2026-07-18', masalah: 'Bocor oli', status: 'Menunggu Sparepart', teknisi: 'Agus Riyadi' },
-  { id: 3, kode_part: 'SP-003', nama_part: 'Van Belt Alternator', tanggal_masuk: '2026-07-19', masalah: 'Retak', status: 'Selesai', teknisi: 'Budi Santoso' },
+  { id: 1, kode_part: 'SP-002', nama_part: 'Aki Kering 12V 45Ah', tanggal_masuk: '2026-07-15', masalah: 'Tegangan drop', status: 'Dalam Pengerjaan', teknisi: 'Agung' },
+  { id: 2, kode_part: 'SP-010', nama_part: 'Shock Absorber Belakang', tanggal_masuk: '2026-07-18', masalah: 'Bocor oli', status: 'Menunggu Sparepart', teknisi: 'Mas sayid' },
+  { id: 3, kode_part: 'SP-003', nama_part: 'Van Belt Alternator', tanggal_masuk: '2026-07-19', masalah: 'Retak', status: 'Selesai', teknisi: 'Mas samsu' },
   { id: 4, kode_part: 'SP-008', nama_part: 'Kopling Set', tanggal_masuk: '2026-07-20', masalah: 'Aus', status: 'Baru Masuk', teknisi: 'Belum Ditugaskan' },
 ];
 
@@ -341,7 +341,7 @@ export const LIFETIME_PARTS = [
   { id: 1, kode_part: 'SP-003', nama_part: 'Van Belt Alternator', mesin: 'Mesin Produksi A', umur_hari: 120, estimasi_maksimal: 180, status: 'Aman' },
   { id: 2, kode_part: 'SP-006', nama_part: 'Bearing Roda Depan', mesin: 'Forklift 01', umur_hari: 350, estimasi_maksimal: 365, status: 'Peringatan' },
   { id: 3, kode_part: 'SP-001', nama_part: 'Filter Oli Mesin', mesin: 'Genset Utama', umur_hari: 95, estimasi_maksimal: 90, status: 'Kritis' },
-  { id: 4, kode_part: 'SP-004', nama_part: 'Kampas Rem Depan', mesin: 'Truk Operasional B', umur_hari: 180, estimasi_maksimal: 240, status: 'Aman' },
-  { id: 5, kode_part: 'SP-010', nama_part: 'Shock Absorber Belakang', mesin: 'Truk Operasional A', umur_hari: 410, estimasi_maksimal: 400, status: 'Kritis' },
+  { id: 4, kode_part: 'SP-004', nama_part: 'Kampas Rem Depan', mesin: 'Mesin A', umur_hari: 180, estimasi_maksimal: 240, status: 'Aman' },
+  { id: 5, kode_part: 'SP-010', nama_part: 'Shock Absorber Belakang', mesin: 'Mesin B', umur_hari: 410, estimasi_maksimal: 400, status: 'Kritis' },
   { id: 6, kode_part: 'SP-009', nama_part: 'Lampu Depan LED', mesin: 'Forklift 02', umur_hari: 10, estimasi_maksimal: 730, status: 'Aman' },
 ];

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Package, Lock, Mail, Loader2, ArrowRight } from 'lucide-react';
+import { Lock, Mail, Loader2, ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -43,22 +43,38 @@ export default function LoginPage() {
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 blur-[100px] pointer-events-none" />
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200">
-            <Package className="w-8 h-8 text-white" strokeWidth={2} />
+      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 mb-8">
+        <div className="flex flex-col items-center">
+          {/* Logo container */}
+          <div className="w-20 h-20 rounded-[1.25rem] bg-white border border-slate-200/60 shadow-sm flex items-center justify-center mb-6">
+            <img
+              src="/logo-perusahaan.png"
+              alt="Company Logo"
+              className="w-14 h-14 object-contain"
+            />
+          </div>
+
+          <div className="flex flex-col items-center justify-center text-center gap-1.5">
+            {/* Product name */}
+            <span className="text-slate-900 text-[22px] font-bold tracking-widest leading-none">
+              SPARE PARTS
+            </span>
+            {/* Subtitle accent */}
+            <span className="text-indigo-600 text-[10px] font-bold tracking-widest leading-none uppercase">
+              WAREHOUSE MANAGEMENT
+            </span>
+            {/* Thin divider */}
+            <div className="my-2 h-[1px] w-32 bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+            {/* Department label */}
+            <span className="text-slate-500 text-[10px] font-medium tracking-wide leading-none">
+              Electrical Department
+            </span>
           </div>
         </div>
-        <h2 className="text-center text-3xl font-extrabold text-slate-900 tracking-tight">
-          SPWMS
-        </h2>
-        <p className="mt-2 text-center text-sm text-slate-500 font-medium">
-          Spare Parts Warehouse Management System
-        </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="bg-white/80 backdrop-blur-xl py-8 px-4 shadow-xl shadow-slate-200/50 sm:rounded-2xl sm:px-10 border border-white">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+        <div className="bg-white py-8 px-4 shadow-xl shadow-slate-200/50 sm:rounded-2xl sm:px-10 border border-slate-100">
           <form className="space-y-6" onSubmit={handleSubmit}>
             
             {error && (
@@ -157,13 +173,13 @@ export default function LoginPage() {
             <div className="mt-6 grid grid-cols-2 gap-3">
               <button
                 onClick={() => autofill('admin')}
-                className="w-full flex justify-center py-2 px-4 border border-slate-200 rounded-lg shadow-sm bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors"
+                className="w-full flex justify-center py-2 px-4 border border-slate-200 rounded-lg shadow-sm bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-all"
               >
                 Admin
               </button>
               <button
                 onClick={() => autofill('staff')}
-                className="w-full flex justify-center py-2 px-4 border border-slate-200 rounded-lg shadow-sm bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors"
+                className="w-full flex justify-center py-2 px-4 border border-slate-200 rounded-lg shadow-sm bg-white text-sm font-medium text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-all"
               >
                 Staff
               </button>

@@ -56,17 +56,33 @@ export default function Sidebar() {
         {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
       </button>
 
-      {/* Logo */}
-      <div className={`flex items-center gap-3.5 h-20 border-b border-white/10 ${collapsed ? 'justify-center px-2' : 'px-5'}`}>
-        <img
-          src="/logo-perusahaan.png"
-          alt="Company Logo"
-          className={`flex-shrink-0 object-contain transition-all duration-300 ${collapsed ? 'w-9 h-9' : 'h-10 w-auto drop-shadow-sm'}`}
-        />
+      {/* Brand Header */}
+      <div className={`flex items-center h-[72px] border-b border-white/[0.08] ${collapsed ? 'justify-center px-3' : 'px-4 gap-3'}`}>
+        {/* Logo container */}
+        <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-white/[0.07] border border-white/[0.1] flex items-center justify-center">
+          <img
+            src="/logo-perusahaan.png"
+            alt="Company Logo"
+            className="w-9 h-9 object-contain"
+          />
+        </div>
+
         {!collapsed && (
-          <div className="animate-fade-in overflow-hidden whitespace-nowrap flex flex-col justify-center pt-0.5">
-            <h1 className="text-white font-black text-2xl tracking-tighter leading-none mb-1.5">SPWMS</h1>
-            <p className="text-slate-400 text-[8px] font-bold uppercase tracking-[0.2em] leading-none">Elektrical Departement</p>
+          <div className="animate-fade-in flex flex-col justify-center min-w-0 gap-[3px]">
+            {/* Product name */}
+            <span className="text-white text-[15px] font-bold tracking-widest leading-none">
+              SPARE PARTS
+            </span>
+            {/* Subtitle accent */}
+            <span className="text-blue-200 text-[9px] font-semibold tracking-widest leading-none uppercase">
+              WAREHOUSE MANAGEMENT
+            </span>
+            {/* Thin divider */}
+            <div className="mt-[4px] h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
+            {/* Department label */}
+            <span className="text-slate-500 text-[9px] font-medium tracking-wide leading-none mt-[3px]">
+              Engineering Department
+            </span>
           </div>
         )}
       </div>
