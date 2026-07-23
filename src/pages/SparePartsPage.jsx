@@ -1,17 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus } from 'lucide-react';
 import useSparePartStore from '../store/useSparePartStore';
 import SparePartFilter from '../components/spareparts/SparePartFilter';
 import SparePartTable from '../components/spareparts/SparePartTable';
 import SparePartFormModal from '../components/spareparts/SparePartFormModal';
 import SearchInput from '../components/common/SearchInput';
+import SkeletonLoader from '../components/common/SkeletonLoader';
 
 export default function SparePartsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPart, setEditingPart] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   
   const { filters, setFilter, deletePart } = useSparePartStore();
   const filteredParts = useSparePartStore(s => s.getFilteredParts());
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleEdit = (part) => {
     setEditingPart(part);
@@ -48,11 +56,17 @@ export default function SparePartsPage() {
       </div>
 
       {/* Main Table */}
-      <SparePartTable
-        data={filteredParts}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
+      {isLoading ? (
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <SkeletonLoader type="table" lines={10} />
+        </div>
+      ) : (
+        <SparePartTable
+          data={filteredParts}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      )}
 
       {/* Form Modal */}
       {isModalOpen && (

@@ -1,1 +1,20 @@
-Uncaught SyntaxError: The requested module '/src/utils/formatDate.js' does not provide an export named 'formatCurrency' (at SparePartTable.jsx:5:10)
+[plugin:vite:import-analysis] Failed to resolve import "./IncomingCalendarWidget" from "src/pages/DashboardPage.jsx". Does the file exist?
+C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/src/pages/DashboardPage.jsx:2:35
+17 |  var _s = $RefreshSig$();
+18 |  import { useAuth } from "../context/AuthContext";
+19 |  import IncomingCalendarWidget from "./IncomingCalendarWidget";
+   |                                      ^
+20 |  import PartRepairWidget from "./PartRepairWidget";
+21 |  import LogActivityWidget from "./LogActivityWidget";
+    at TransformPluginContext._formatError (file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49258:41)
+    at TransformPluginContext.error (file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49253:16)
+    at normalizeUrl (file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64307:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64439:39
+    at async Promise.all (index 4)
+    at async TransformPluginContext.transform (file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64366:7)
+    at async PluginContainer.transform (file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49099:18)
+    at async loadAndTransform (file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:51978:27)
+    at async viteTransformMiddleware (file:///C:/Users/USER/.gemini/antigravity-ide/scratch/spwms_satoria/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:62106:24
+Click outside, press Esc key, or fix the code to dismiss.
+You can also disable this overlay by setting server.hmr.overlay to false in vite.config.js.

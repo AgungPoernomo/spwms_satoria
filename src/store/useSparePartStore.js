@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { SPARE_PARTS } from '../data/mockData';
 import { calculateStatus } from '../utils/calculateStatus';
+import useLogStore from './useLogStore';
 
 const useSparePartStore = create((set, get) => ({
   spareParts: SPARE_PARTS,
@@ -32,22 +33,36 @@ const useSparePartStore = create((set, get) => ({
       tanggal_update_terakhir: new Date().toISOString(),
     };
     set(state => ({ spareParts: [...state.spareParts, newPart] }));
+    useLogStore.getState().addLog('Spare Part', 'Tambah Spare Part', `Menambahkan spare part baru: ${newPart.nama_part} (${newPart.kode_part})`);
   },
 
-  updatePart: (id, updates) =>
+  updatePart: (id, updates) => {
+    let updatedPartName = '';
     set(state => ({
       spareParts: state.spareParts.map(p => {
         if (p.id !== id) return p;
         const updated = { ...p, ...updates, tanggal_update_terakhir: new Date().toISOString() };
         updated.status = calculateStatus(updated.stok_saat_ini, updated.stok_minimum, updated.stok_maksimum);
+        updatedPartName = `${updated.nama_part} (${updated.kode_part})`;
         return updated;
       }),
-    })),
+    }));
+    if (updatedPartName) {
+      useLogStore.getState().addLog('Spare Part', 'Update Spare Part', `Mengubah data spare part: ${updatedPartName}`);
+    }
+  },
 
-  deletePart: (id) =>
-    set(state => ({
-      spareParts: state.spareParts.filter(p => p.id !== id),
-    })),
+  deletePart: (id) => {
+    let deletedPartName = '';
+    set(state => {
+      const target = state.spareParts.find(p => p.id === id);
+      if (target) deletedPartName = `${target.nama_part} (${target.kode_part})`;
+      return { spareParts: state.spareParts.filter(p => p.id !== id) };
+    });
+    if (deletedPartName) {
+      useLogStore.getState().addLog('Spare Part', 'Hapus Spare Part', `Menghapus spare part: ${deletedPartName}`);
+    }
+  },
 
   // Update stock (called from transaction store)
   adjustStock: (kodePart, delta) =>

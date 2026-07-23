@@ -1,1 +1,9 @@
-1. Sekarang sempurnakan dan rapikan tampilan ukuran logo perusahaan, tulisan "SPWMS" dan "Elektrical Departement" menggunakan font yang sama dengan font yang sudah disepakati.
+1. Sekarang fokus ke halaman "dashboard". Berikut revisinya :
+- kalender kedatangan part.
+- diagram lingkaran dipojok kanan 
+- tabel inventory overview pojok kanan dibawah diagram lingkaran
+- tabel part repair dibawah kalender kedatangan part
+- log aktivitas diatas diangram lingkaran
+- tabel stock used dipojok kritis
+- tabel ringkasan stock opname.
+- card stock gudang.

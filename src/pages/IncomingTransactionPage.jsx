@@ -1,15 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Filter, RotateCcw } from 'lucide-react';
 import useTransactionStore from '../store/useTransactionStore';
 import { SUPPLIERS } from '../data/mockData';
 import IncomingTransactionTable from '../components/transactions/IncomingTransactionTable';
 import IncomingTransactionFormModal from '../components/transactions/IncomingTransactionFormModal';
 import SearchInput from '../components/common/SearchInput';
+import SkeletonLoader from '../components/common/SkeletonLoader';
 
 export default function IncomingTransactionPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { filterMasuk, setFilterMasuk } = useTransactionStore();
   const filteredData = useTransactionStore(s => s.getFilteredMasuk());
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const resetFilters = () => {
     setFilterMasuk('search', '');
@@ -85,7 +92,13 @@ export default function IncomingTransactionPage() {
         </div>
       </div>
 
-      <IncomingTransactionTable data={filteredData} />
+      {isLoading ? (
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <SkeletonLoader type="table" lines={10} />
+        </div>
+      ) : (
+        <IncomingTransactionTable data={filteredData} />
+      )}
 
       {isModalOpen && (
         <IncomingTransactionFormModal

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Minus, Filter, RotateCcw } from 'lucide-react';
 import useTransactionStore from '../store/useTransactionStore';
 import OutgoingTransactionTable from '../components/transactions/OutgoingTransactionTable';
 import OutgoingTransactionFormModal from '../components/transactions/OutgoingTransactionFormModal';
 import SearchInput from '../components/common/SearchInput';
+import SkeletonLoader from '../components/common/SkeletonLoader';
 
 const DEPARTEMEN_LIST = [
   'Workshop Maintenance',
@@ -15,8 +16,14 @@ const DEPARTEMEN_LIST = [
 
 export default function OutgoingTransactionPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { filterKeluar, setFilterKeluar } = useTransactionStore();
   const filteredData = useTransactionStore(s => s.getFilteredKeluar());
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const resetFilters = () => {
     setFilterKeluar('search', '');
@@ -92,7 +99,13 @@ export default function OutgoingTransactionPage() {
         </div>
       </div>
 
-      <OutgoingTransactionTable data={filteredData} />
+      {isLoading ? (
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <SkeletonLoader type="table" lines={10} />
+        </div>
+      ) : (
+        <OutgoingTransactionTable data={filteredData} />
+      )}
 
       {isModalOpen && (
         <OutgoingTransactionFormModal

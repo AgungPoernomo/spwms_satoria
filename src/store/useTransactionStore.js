@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { TRANSAKSI_MASUK, TRANSAKSI_KELUAR } from '../data/mockData';
 import useSparePartStore from './useSparePartStore';
+import useLogStore from './useLogStore';
 
 const useTransactionStore = create((set, get) => ({
   transaksiMasuk: TRANSAKSI_MASUK,
@@ -21,6 +22,7 @@ const useTransactionStore = create((set, get) => ({
     set(state => ({ transaksiMasuk: [newTx, ...state.transaksiMasuk] }));
     // Increase stock
     useSparePartStore.getState().adjustStock(data.kode_part, data.jumlah);
+    useLogStore.getState().addLog('Transaksi', 'Barang Masuk', `Menerima ${data.jumlah} pcs ${data.nama_part} dari ${data.supplier || 'Supplier'}`);
   },
 
   addKeluar: (data) => {
@@ -28,6 +30,7 @@ const useTransactionStore = create((set, get) => ({
     set(state => ({ transaksiKeluar: [newTx, ...state.transaksiKeluar] }));
     // Decrease stock
     useSparePartStore.getState().adjustStock(data.kode_part, -data.jumlah);
+    useLogStore.getState().addLog('Transaksi', 'Barang Keluar', `Mengeluarkan ${data.jumlah} pcs ${data.nama_part} ke ${data.tujuan_departemen}`);
   },
 
   getFilteredMasuk: () => {

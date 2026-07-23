@@ -17,6 +17,8 @@ import SparePartsRepairPage from './pages/SparePartsRepairPage';
 import LogAktivitasPage from './pages/LogAktivitasPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
+import ToastContainer from './components/common/Toast';
+
 function Layout({ children }) {
   return (
     <div className="flex h-screen w-full bg-slate-50 overflow-hidden text-slate-800 font-sans">
@@ -29,9 +31,11 @@ function Layout({ children }) {
           </div>
         </main>
       </div>
+      <ToastContainer />
     </div>
   );
 }
+
 
 function AppRoutes() {
   const { user } = useAuth();

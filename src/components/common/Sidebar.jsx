@@ -70,19 +70,14 @@ export default function Sidebar() {
         {!collapsed && (
           <div className="animate-fade-in flex flex-col justify-center min-w-0 gap-[3px]">
             {/* Product name */}
-            <span className="text-white text-[15px] font-bold tracking-widest leading-none">
-              SPARE PARTS
+            <span className="text-white text-[12px] font-bold tracking-widest leading-none">
+              SISTEM MANAGEMENT
             </span>
             {/* Subtitle accent */}
             <span className="text-blue-200 text-[9px] font-semibold tracking-widest leading-none uppercase">
-              WAREHOUSE MANAGEMENT
+              WAREHOUSE SPARE PARTS
             </span>
-            {/* Thin divider */}
-            <div className="mt-[4px] h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
-            {/* Department label */}
-            <span className="text-slate-500 text-[9px] font-medium tracking-wide leading-none mt-[3px]">
-              Engineering Department
-            </span>
+
           </div>
         )}
       </div>
