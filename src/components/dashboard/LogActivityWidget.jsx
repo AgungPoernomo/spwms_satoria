@@ -5,7 +5,7 @@ export default function LogActivityWidget() {
   const recentLogs = useLogStore(s => s.getRecentLogs(3));
 
   return (
-    <div className="bg-slate-800 rounded-2xl shadow-sm border border-slate-700 p-5 w-full text-slate-100">
+    <div className="bg-slate-800 rounded-2xl shadow-sm border border-slate-700 p-5 w-full h-full flex flex-col text-slate-100">
       <div className="flex items-center gap-2 mb-4">
         <Activity size={16} className="text-blue-400" />
         <h3 className="font-bold text-sm">Log Aktivitas Terbaru</h3>

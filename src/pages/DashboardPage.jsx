@@ -13,47 +13,43 @@ export default function DashboardPage() {
 
   return (
     <div className="w-full pb-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Selamat Datang, {user?.nama?.split(' ')[0] || 'User'}!</h1>
-        <p className="text-slate-500 text-sm font-medium">Metrik Real-time performa Gudang Master.</p>
-      </div>
 
-      <div className="grid grid-cols-12 gap-6 w-full items-start">
-        
+      <div className="grid grid-cols-12 gap-6 w-full items-stretch">
+
         {/* ROW 1: TOP SECTION */}
         {/* LEFT COLUMN (8 cols) */}
         <div className="col-span-12 xl:col-span-8 flex flex-col gap-6">
-          <div className="h-[360px]">
-             <IncomingCalendarWidget />
+          <div className="flex-1">
+            <IncomingCalendarWidget />
           </div>
-          <div>
-             <PartRepairWidget />
+          <div className="flex-1">
+            <PartRepairWidget />
+          </div>
+          <div className="flex-1">
+            <InventoryOverviewWidget />
           </div>
         </div>
 
         {/* RIGHT COLUMN (4 cols) */}
         <div className="col-span-12 xl:col-span-4 flex flex-col gap-6">
           <div>
-             <LogActivityWidget />
+            <LogActivityWidget />
           </div>
-          <div>
-             <InventoryPieChart />
+          <div className="flex-1">
+            <InventoryPieChart />
           </div>
-          <div>
-             <InventoryOverviewWidget />
+          <div className="flex-1">
+            <StockUsedWidget />
           </div>
         </div>
 
         {/* ROW 2: BOTTOM SECTION */}
-        <div className="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
-          <div className="h-[250px]">
+        <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+          <div className="flex-1">
             <WarehouseStockWidget />
           </div>
-          <div className="h-[250px]">
+          <div className="flex-1">
             <OpnameSummaryWidget />
-          </div>
-          <div className="h-[250px]">
-            <StockUsedWidget />
           </div>
         </div>
 

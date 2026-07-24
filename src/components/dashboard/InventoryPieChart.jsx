@@ -18,10 +18,11 @@ export default function InventoryPieChart() {
   })).sort((a, b) => b.value - a.value);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 w-full">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 w-full h-full flex flex-col">
       <h3 className="font-bold text-slate-800 text-sm mb-4">Komposisi Inventori (Kategori)</h3>
-      <div className="h-64 w-full">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="w-full flex-1 min-h-[350px] relative">
+        <div className="absolute inset-0">
+          <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={data}
@@ -36,12 +37,13 @@ export default function InventoryPieChart() {
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip 
+            <Tooltip
               contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
             />
             <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
           </PieChart>
-        </ResponsiveContainer>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

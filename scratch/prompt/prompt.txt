@@ -1,9 +1,2 @@
-1. Sekarang fokus ke halaman "dashboard". Berikut revisinya :
-- kalender kedatangan part.
-- diagram lingkaran dipojok kanan 
-- tabel inventory overview pojok kanan dibawah diagram lingkaran
-- tabel part repair dibawah kalender kedatangan part
-- log aktivitas diatas diangram lingkaran
-- tabel stock used dipojok kritis
-- tabel ringkasan stock opname.
-- card stock gudang.
+Berikut revisi di halaman "Stock Gudang"
+ - Perbarui refrensi warna yang digunakan, samakan dengan halaman "Dashboard"

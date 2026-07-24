@@ -11,7 +11,7 @@ export default function InventoryOverviewWidget() {
   const normalParts = spareParts.filter(p => p.status === 'Normal').length;
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 w-full">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 w-full h-full flex flex-col">
       <h3 className="font-bold text-slate-800 text-sm mb-4">Inventory Overview</h3>
       
       <div className="space-y-3">

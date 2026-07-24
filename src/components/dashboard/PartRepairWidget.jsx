@@ -12,7 +12,7 @@ export default function PartRepairWidget() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col w-full">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col w-full h-full">
       <div className="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
         <Wrench size={16} className="text-slate-600" />
         <h3 className="font-bold text-slate-800 text-sm">Part Repair</h3>
