@@ -1,2 +1,6 @@
-Berikut revisi di halaman "Stock Gudang"
- - Perbarui refrensi warna yang digunakan, samakan dengan halaman "Dashboard"
+Sekarang tambahkan halaman baru bernama "Tracking Part". 
+- Fitur ini berfungsi untuk melacak keberadaan SPESIFIK dari part part yang ada.
+- Fitur ini menjadi jembatan seorang user untuk melihat bagaimana kondisi part secara detail, apakah part tersebut sudah tiba di gudang dan sudah di inventory atau belum. Apakah part tersebut sudah digunakan atau belum, perkiraan part ini rusak atau tidak, siapa yang menggunakannya, apakah part ini sedang dalam masa perbaikan, dll.
+- Fitur ini juga akan mendukung fitur Barcode. dimana keinginan saya adalah setiap orang yang akan menggunakan part ini akan melakukan scan code barcode.
+- Nantinya di halaman ini, secara sekilas saya ingin seperti model tracking seperti lintasan, sehingga user tahu dengan detail kondisi suatu part.
+- Untuk detail konsep ini saya belum terpikirkan, tolong bantu saya.

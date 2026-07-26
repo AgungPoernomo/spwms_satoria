@@ -180,3 +180,55 @@
 .animate-text-slide {
   animation: textSlideIn 0.4s ease-out forwards;
 }
+
+/* ── Print Styles: Generator Code ────────────────────────────────────────── */
+@media print {
+  /* Hide everything except the print sheet */
+  body > * { display: none !important; }
+  #root     { display: block !important; }
+  #root > * { display: none !important; }
+
+  /* Show only the hidden print area */
+  .print\:block { display: block !important; }
+
+  /* Reset page margins & background */
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Print sheet layout */
+  .print-sheet {
+    display: block !important;
+    width: 100%;
+    padding: 0;
+  }
+
+  .print-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8mm;
+    width: 100%;
+  }
+
+  /* Each label cell */
+  .print-cell {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Label box */
+  .print-label {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    padding: 6px !important;
+    width: 100% !important;
+    background: white !important;
+  }
+}

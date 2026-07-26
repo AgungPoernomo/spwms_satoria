@@ -345,3 +345,158 @@ export const LIFETIME_PARTS = [
   { id: 5, kode_part: 'SP-010', nama_part: 'Shock Absorber Belakang', mesin: 'Mesin B', umur_hari: 410, estimasi_maksimal: 400, status: 'Kritis' },
   { id: 6, kode_part: 'SP-009', nama_part: 'Lampu Depan LED', mesin: 'Forklift 02', umur_hari: 10, estimasi_maksimal: 730, status: 'Aman' },
 ];
+
+// =============================================
+// TRACKING DATA — Part Lifecycle
+// =============================================
+
+// Lifecycle stage definitions (order matters)
+export const LIFECYCLE_STAGES = [
+  { id: 'po',                label: 'PO Dibuat',      desc: 'Purchase order diterbitkan' },
+  { id: 'pengiriman',        label: 'Dikirim',         desc: 'Dalam pengiriman dari supplier' },
+  { id: 'masuk_gudang',      label: 'Tiba di Gudang',  desc: 'Diterima & dicek di gudang' },
+  { id: 'di_rak',            label: 'Tersimpan di Rak',desc: 'Sudah diinventory & di rak' },
+  { id: 'keluar',            label: 'Digunakan',        desc: 'Dikeluarkan untuk pemakaian' },
+  { id: 'perbaikan',         label: 'Perbaikan',        desc: 'Dalam proses perbaikan/servis' },
+  { id: 'selesai_perbaikan', label: 'Selesai Perbaikan',desc: 'Perbaikan selesai, kembali ke rak' },
+  { id: 'afkir',             label: 'Afkir',            desc: 'Part dinyatakan tidak layak' },
+];
+
+// Individual tracked units (Per Unit — Serial Number)
+export const TRACKING_UNITS = [
+  // SP-002 units (Aki Kering 12V 45Ah)
+  {
+    id: 'TU-001', kode_part: 'SP-002', nama_part: 'Aki Kering 12V 45Ah',
+    kategori: 'Elektrikal', serial_number: 'AK-2026-001',
+    batch_ref: 'PO-2026-0719-01', supplier: 'CV Elektrik Jaya',
+    status: 'di_rak', lokasi_saat_ini: 'Rak B-02-01',
+    pengguna: null, mesin: null, kondisi: 'Baik',
+    tanggal_masuk: '2026-07-19', tanggal_keluar: null,
+  },
+  {
+    id: 'TU-002', kode_part: 'SP-002', nama_part: 'Aki Kering 12V 45Ah',
+    kategori: 'Elektrikal', serial_number: 'AK-2026-002',
+    batch_ref: 'PO-2026-0719-01', supplier: 'CV Elektrik Jaya',
+    status: 'keluar', lokasi_saat_ini: 'Departemen Logistik',
+    pengguna: 'Mas Budi', mesin: 'Forklift 01', kondisi: 'Baik',
+    tanggal_masuk: '2026-07-19', tanggal_keluar: '2026-07-20',
+  },
+  {
+    id: 'TU-003', kode_part: 'SP-002', nama_part: 'Aki Kering 12V 45Ah',
+    kategori: 'Elektrikal', serial_number: 'AK-2026-003',
+    batch_ref: 'PO-2026-0719-01', supplier: 'CV Elektrik Jaya',
+    status: 'perbaikan', lokasi_saat_ini: 'Workshop Maintenance',
+    pengguna: 'Agung', mesin: 'Forklift 02', kondisi: 'Rusak',
+    tanggal_masuk: '2026-07-15', tanggal_keluar: '2026-07-16',
+  },
+  // SP-001 units (Filter Oli Mesin)
+  {
+    id: 'TU-004', kode_part: 'SP-001', nama_part: 'Filter Oli Mesin',
+    kategori: 'Filter', serial_number: 'FO-2026-001',
+    batch_ref: 'PO-2026-0713-06', supplier: 'PT Sumber Suku Cadang',
+    status: 'di_rak', lokasi_saat_ini: 'Rak A-01-03',
+    pengguna: null, mesin: null, kondisi: 'Baik',
+    tanggal_masuk: '2026-07-13', tanggal_keluar: null,
+  },
+  {
+    id: 'TU-005', kode_part: 'SP-001', nama_part: 'Filter Oli Mesin',
+    kategori: 'Filter', serial_number: 'FO-2026-002',
+    batch_ref: 'PO-2026-0713-06', supplier: 'PT Sumber Suku Cadang',
+    status: 'keluar', lokasi_saat_ini: 'Workshop Maintenance',
+    pengguna: 'Mas Samsu', mesin: 'Genset Utama', kondisi: 'Baik',
+    tanggal_masuk: '2026-07-13', tanggal_keluar: '2026-07-20',
+  },
+  // SP-004 units (Kampas Rem Depan)
+  {
+    id: 'TU-006', kode_part: 'SP-004', nama_part: 'Kampas Rem Depan',
+    kategori: 'Rem', serial_number: 'KR-2026-001',
+    batch_ref: 'PO-2026-0720-02', supplier: 'UD Rem Prima',
+    status: 'masuk_gudang', lokasi_saat_ini: 'Area Penerimaan Gudang',
+    pengguna: null, mesin: null, kondisi: 'Baik',
+    tanggal_masuk: '2026-07-20', tanggal_keluar: null,
+  },
+  {
+    id: 'TU-007', kode_part: 'SP-004', nama_part: 'Kampas Rem Depan',
+    kategori: 'Rem', serial_number: 'KR-2026-002',
+    batch_ref: 'PO-2026-0720-02', supplier: 'UD Rem Prima',
+    status: 'afkir', lokasi_saat_ini: 'Area Disposal',
+    pengguna: 'Teknisi A', mesin: 'Mobil Operasional', kondisi: 'Rusak Parah',
+    tanggal_masuk: '2026-06-01', tanggal_keluar: '2026-06-15',
+  },
+];
+
+// Event history per unit
+export const TRACKING_EVENTS = [
+  // TU-001 (AK-2026-001 — Di Rak)
+  { id: 'TE-001', unit_id: 'TU-001', kode_part: 'SP-002', event_type: 'po',           tanggal: '2026-07-17T09:00:00', deskripsi: 'Purchase Order diterbitkan', petugas: 'Admin Gudang', departemen: 'Pengadaan', catatan: 'PO-2026-0719-01, qty: 20 pcs' },
+  { id: 'TE-002', unit_id: 'TU-001', kode_part: 'SP-002', event_type: 'pengiriman',   tanggal: '2026-07-18T08:00:00', deskripsi: 'Dikirim oleh CV Elektrik Jaya', petugas: 'Driver Supplier', departemen: 'Eksternal', catatan: 'Estimasi tiba 19 Juli' },
+  { id: 'TE-003', unit_id: 'TU-001', kode_part: 'SP-002', event_type: 'masuk_gudang', tanggal: '2026-07-19T10:15:00', deskripsi: 'Tiba & diperiksa kondisi fisik', petugas: 'Petugas Penerimaan', departemen: 'Gudang', catatan: 'Kondisi baik, tidak ada kerusakan fisik' },
+  { id: 'TE-004', unit_id: 'TU-001', kode_part: 'SP-002', event_type: 'di_rak',       tanggal: '2026-07-19T14:00:00', deskripsi: 'Diinventory & disimpan di rak', petugas: 'Admin Gudang', departemen: 'Gudang', catatan: 'Lokasi Rak B-02-01, Serial AK-2026-001' },
+
+  // TU-002 (AK-2026-002 — Digunakan)
+  { id: 'TE-005', unit_id: 'TU-002', kode_part: 'SP-002', event_type: 'po',           tanggal: '2026-07-17T09:00:00', deskripsi: 'Purchase Order diterbitkan', petugas: 'Admin Gudang', departemen: 'Pengadaan', catatan: 'PO-2026-0719-01, qty: 20 pcs' },
+  { id: 'TE-006', unit_id: 'TU-002', kode_part: 'SP-002', event_type: 'pengiriman',   tanggal: '2026-07-18T08:00:00', deskripsi: 'Dikirim oleh CV Elektrik Jaya', petugas: 'Driver Supplier', departemen: 'Eksternal', catatan: '' },
+  { id: 'TE-007', unit_id: 'TU-002', kode_part: 'SP-002', event_type: 'masuk_gudang', tanggal: '2026-07-19T10:15:00', deskripsi: 'Tiba & diperiksa kondisi fisik', petugas: 'Petugas Penerimaan', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-008', unit_id: 'TU-002', kode_part: 'SP-002', event_type: 'di_rak',       tanggal: '2026-07-19T14:00:00', deskripsi: 'Disimpan di rak', petugas: 'Admin Gudang', departemen: 'Gudang', catatan: 'Rak B-02-01' },
+  { id: 'TE-009', unit_id: 'TU-002', kode_part: 'SP-002', event_type: 'keluar',       tanggal: '2026-07-20T08:30:00', deskripsi: 'Dikeluarkan untuk pemakaian', petugas: 'Mas Budi', departemen: 'Departemen Logistik', catatan: 'Penggantian aki Forklift 01' },
+
+  // TU-003 (AK-2026-003 — Perbaikan)
+  { id: 'TE-010', unit_id: 'TU-003', kode_part: 'SP-002', event_type: 'po',           tanggal: '2026-07-10T09:00:00', deskripsi: 'Purchase Order diterbitkan', petugas: 'Admin Gudang', departemen: 'Pengadaan', catatan: '' },
+  { id: 'TE-011', unit_id: 'TU-003', kode_part: 'SP-002', event_type: 'masuk_gudang', tanggal: '2026-07-15T10:00:00', deskripsi: 'Tiba & diperiksa', petugas: 'Petugas Penerimaan', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-012', unit_id: 'TU-003', kode_part: 'SP-002', event_type: 'di_rak',       tanggal: '2026-07-15T13:00:00', deskripsi: 'Disimpan di rak', petugas: 'Admin Gudang', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-013', unit_id: 'TU-003', kode_part: 'SP-002', event_type: 'keluar',       tanggal: '2026-07-16T07:45:00', deskripsi: 'Dipakai pada Forklift 02', petugas: 'Agung', departemen: 'Operasional', catatan: 'Penggantian aki lemah' },
+  { id: 'TE-014', unit_id: 'TU-003', kode_part: 'SP-002', event_type: 'perbaikan',    tanggal: '2026-07-22T09:00:00', deskripsi: 'Tegangan drop, dibawa ke workshop', petugas: 'Agung', departemen: 'Workshop Maintenance', catatan: 'Kemungkinan sel rusak. Masalah: tidak bisa menyimpan daya' },
+
+  // TU-004 (FO-2026-001 — Di Rak)
+  { id: 'TE-015', unit_id: 'TU-004', kode_part: 'SP-001', event_type: 'po',           tanggal: '2026-07-12T09:00:00', deskripsi: 'PO diterbitkan', petugas: 'Admin Gudang', departemen: 'Pengadaan', catatan: 'PO-2026-0713-06' },
+  { id: 'TE-016', unit_id: 'TU-004', kode_part: 'SP-001', event_type: 'masuk_gudang', tanggal: '2026-07-13T11:00:00', deskripsi: 'Tiba dari PT Sumber Suku Cadang', petugas: 'Petugas Penerimaan', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-017', unit_id: 'TU-004', kode_part: 'SP-001', event_type: 'di_rak',       tanggal: '2026-07-13T14:30:00', deskripsi: 'Disimpan Rak A-01-03', petugas: 'Admin Gudang', departemen: 'Gudang', catatan: '' },
+
+  // TU-005 (FO-2026-002 — Digunakan)
+  { id: 'TE-018', unit_id: 'TU-005', kode_part: 'SP-001', event_type: 'po',           tanggal: '2026-07-12T09:00:00', deskripsi: 'PO diterbitkan', petugas: 'Admin Gudang', departemen: 'Pengadaan', catatan: '' },
+  { id: 'TE-019', unit_id: 'TU-005', kode_part: 'SP-001', event_type: 'masuk_gudang', tanggal: '2026-07-13T11:00:00', deskripsi: 'Tiba dari PT Sumber Suku Cadang', petugas: 'Petugas Penerimaan', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-020', unit_id: 'TU-005', kode_part: 'SP-001', event_type: 'di_rak',       tanggal: '2026-07-13T14:30:00', deskripsi: 'Disimpan Rak A-01-03', petugas: 'Admin Gudang', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-021', unit_id: 'TU-005', kode_part: 'SP-001', event_type: 'keluar',       tanggal: '2026-07-20T07:45:00', deskripsi: 'Dipakai untuk servis Genset Utama', petugas: 'Mas Samsu', departemen: 'Workshop Maintenance', catatan: 'Servis berkala 500 jam' },
+
+  // TU-006 (KR-2026-001 — Baru tiba)
+  { id: 'TE-022', unit_id: 'TU-006', kode_part: 'SP-004', event_type: 'po',           tanggal: '2026-07-18T09:00:00', deskripsi: 'PO diterbitkan', petugas: 'Admin Gudang', departemen: 'Pengadaan', catatan: 'PO-2026-0720-02' },
+  { id: 'TE-023', unit_id: 'TU-006', kode_part: 'SP-004', event_type: 'pengiriman',   tanggal: '2026-07-19T10:00:00', deskripsi: 'Dikirim oleh UD Rem Prima', petugas: 'Driver Supplier', departemen: 'Eksternal', catatan: '' },
+  { id: 'TE-024', unit_id: 'TU-006', kode_part: 'SP-004', event_type: 'masuk_gudang', tanggal: '2026-07-20T09:30:00', deskripsi: 'Tiba, menunggu proses inventori', petugas: 'Petugas Penerimaan', departemen: 'Gudang', catatan: 'Belum disimpan ke rak' },
+
+  // TU-007 (KR-2026-002 — Afkir)
+  { id: 'TE-025', unit_id: 'TU-007', kode_part: 'SP-004', event_type: 'po',           tanggal: '2026-05-30T09:00:00', deskripsi: 'PO diterbitkan', petugas: 'Admin Gudang', departemen: 'Pengadaan', catatan: '' },
+  { id: 'TE-026', unit_id: 'TU-007', kode_part: 'SP-004', event_type: 'masuk_gudang', tanggal: '2026-06-01T10:00:00', deskripsi: 'Tiba dari UD Rem Prima', petugas: 'Petugas Penerimaan', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-027', unit_id: 'TU-007', kode_part: 'SP-004', event_type: 'di_rak',       tanggal: '2026-06-01T13:00:00', deskripsi: 'Disimpan Rak C-01-05', petugas: 'Admin Gudang', departemen: 'Gudang', catatan: '' },
+  { id: 'TE-028', unit_id: 'TU-007', kode_part: 'SP-004', event_type: 'keluar',       tanggal: '2026-06-15T08:00:00', deskripsi: 'Dipakai di Mobil Operasional', petugas: 'Teknisi A', departemen: 'Workshop Maintenance', catatan: '' },
+  { id: 'TE-029', unit_id: 'TU-007', kode_part: 'SP-004', event_type: 'perbaikan',    tanggal: '2026-07-10T09:00:00', deskripsi: 'Aus parah, dibawa ke workshop', petugas: 'Teknisi A', departemen: 'Workshop Maintenance', catatan: 'Kampas habis sepenuhnya' },
+  { id: 'TE-030', unit_id: 'TU-007', kode_part: 'SP-004', event_type: 'afkir',        tanggal: '2026-07-12T10:00:00', deskripsi: 'Dinyatakan tidak layak pakai', petugas: 'Admin Gudang', departemen: 'Gudang', catatan: 'Sudah dikirim ke area disposal' },
+];
+
+// Approval requests for status change
+export const APPROVAL_REQUESTS = [
+  {
+    id: 'AR-001',
+    unit_id: 'TU-001', kode_part: 'SP-002', nama_part: 'Aki Kering 12V 45Ah', serial_number: 'AK-2026-001',
+    requested_by: 'Staff Gudang', requested_at: '2026-07-26T07:30:00',
+    action: 'keluar', target_departemen: 'Workshop Maintenance', target_mesin: 'Forklift 03',
+    reason: 'Penggantian aki forklift yang sudah lemah tegangan',
+    status: 'pending', approved_by: null, approved_at: null, rejected_reason: null,
+  },
+  {
+    id: 'AR-002',
+    unit_id: 'TU-004', kode_part: 'SP-001', nama_part: 'Filter Oli Mesin', serial_number: 'FO-2026-001',
+    requested_by: 'Staff Gudang', requested_at: '2026-07-25T14:00:00',
+    action: 'keluar', target_departemen: 'Workshop Maintenance', target_mesin: 'Mesin Produksi A',
+    reason: 'Ganti filter oli berkala 500 jam operasional mesin',
+    status: 'approved', approved_by: 'Admin Gudang', approved_at: '2026-07-25T15:30:00', rejected_reason: null,
+  },
+  {
+    id: 'AR-003',
+    unit_id: 'TU-003', kode_part: 'SP-002', nama_part: 'Aki Kering 12V 45Ah', serial_number: 'AK-2026-003',
+    requested_by: 'Agung', requested_at: '2026-07-22T08:45:00',
+    action: 'afkir', target_departemen: null, target_mesin: null,
+    reason: 'Sel aki sudah tidak bisa diperbaiki, perlu afkir',
+    status: 'rejected', approved_by: 'Admin Gudang', approved_at: null, rejected_reason: 'Perlu cek ulang oleh teknisi senior sebelum diafkir',
+  },
+];
+

@@ -16,6 +16,8 @@ import {
   Wrench,
   Activity,
   Truck,
+  QrCode,
+  ScanLine,
 } from 'lucide-react';
 import { useState } from 'react';
 import useSparePartStore from '../../store/useSparePartStore';
@@ -33,6 +35,8 @@ const NAV_ITEMS = [
   { to: '/lifetime-part', icon: Clock, label: 'Lifetime Part' },
   { to: '/spare-parts-repair', icon: Wrench, label: 'Spare Parts Repair' },
   { to: '/log-aktivitas', icon: Activity, label: 'Log Aktivitas' },
+  { to: '/tracking-part', icon: ScanLine, label: 'Tracking Part' },
+  { to: '/generator-code', icon: QrCode, label: 'Generator Code' },
   { to: '/laporan', icon: FileBarChart2, label: 'Laporan' },
 ];
 

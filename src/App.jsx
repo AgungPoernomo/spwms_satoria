@@ -15,6 +15,8 @@ import SettingsPage from './pages/SettingsPage';
 import LifetimePartPage from './pages/LifetimePartPage';
 import SparePartsRepairPage from './pages/SparePartsRepairPage';
 import LogAktivitasPage from './pages/LogAktivitasPage';
+import GeneratorCodePage from './pages/GeneratorCodePage';
+import TrackingPartPage from './pages/TrackingPartPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 import ToastContainer from './components/common/Toast';
@@ -59,6 +61,8 @@ function AppRoutes() {
           <Route path="/lifetime-part" element={<LifetimePartPage />} />
           <Route path="/spare-parts-repair" element={<SparePartsRepairPage />} />
           <Route path="/log-aktivitas" element={<LogAktivitasPage />} />
+          <Route path="/tracking-part" element={<TrackingPartPage />} />
+          <Route path="/generator-code" element={<GeneratorCodePage />} />
           <Route path="/laporan" element={<ReportsPage />} />
           <Route path="/pengaturan" element={<SettingsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
